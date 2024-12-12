@@ -14,6 +14,9 @@ class Controller {
       const parsedNormalList = Parser.parsingNormal(normalDayWorkingList);
       const holidayWorkingList = await InputView.readHolidayWorkingList();
       const parsedHolidayList = Parser.parsingHoliday(holidayWorkingList);
+      const result = Calendar.matchPeople(calendar.day, parsedNormalList, parsedHolidayList);
+      console.log(result);
+      console.log(calendar.day);
     } catch (error) {
       OutputView.print(error);
     }

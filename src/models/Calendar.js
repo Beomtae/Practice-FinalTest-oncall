@@ -83,6 +83,23 @@ class Calendar {
       this.day[8] = 2;
     }
   }
+
+  static matchPeople(day, normal, holiday) {
+    const result = [...day];
+    let normalIndex = 0;
+    let holidayIndex = 0;
+    result.forEach((date, index) => {
+      if (date === 0) {
+        result[index] = normal[normalIndex % normal.length];
+        normalIndex += 1;
+      }
+      if (date === 1 || date === 2) {
+        result[index] = holiday[holidayIndex % holiday.length];
+        holidayIndex += 1;
+      }
+    });
+    return result;
+  }
 }
 
 export default Calendar;
