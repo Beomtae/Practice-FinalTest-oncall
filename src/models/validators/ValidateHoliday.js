@@ -15,9 +15,16 @@ const nameLength = input => {
   });
 };
 
+const people = input => {
+  if (input.length < 5 || input.length > 35) {
+    throw new Error(ERROR_MESSAGE.AMOUNT);
+  }
+};
+
 const ValidateHoliday = input => {
   duplicate(input);
   nameLength(input);
+  people(input);
 };
 
 export default ValidateHoliday;
