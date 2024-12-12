@@ -4,6 +4,8 @@ import OutputView from '../views/OutputView.js';
 import Parser from '../utils/Parser.js';
 import ValidateMonth from '../models/validators/ValidateMonth.js';
 import Calendar from '../models/Calendar.js';
+import ValidateNormal from '../models/validators/ValidateNormal.js';
+import ValidateHoliday from '../models/validators/ValidateHoliday.js';
 
 class Controller {
   static async run() {
@@ -37,6 +39,7 @@ class Controller {
       try {
         const normalDayWorkingList = await InputView.readNormalDayWorkingList();
         const parsedNormalList = Parser.parsingNormal(normalDayWorkingList);
+        ValidateNormal(parsedNormalList);
         return parsedNormalList;
       } catch (error) {
         OutputView.print(error);
@@ -49,6 +52,7 @@ class Controller {
       try {
         const holidayWorkingList = await InputView.readHolidayWorkingList();
         const parsedHolidayList = Parser.parsingHoliday(holidayWorkingList);
+        ValidateHoliday(parsedHolidayList);
         return parsedHolidayList;
       } catch (error) {
         OutputView.print(error);
