@@ -90,10 +90,20 @@ class Calendar {
     let holidayIndex = 0;
     result.forEach((date, index) => {
       if (date === 0) {
+        if (result[index - 1] === normal[normalIndex % normal.length]) {
+          const temp = normal[normalIndex % normal.length];
+          normal[normalIndex % normal.length] = normal[normalIndex + (1 % normal.length)];
+          normal[normalIndex + (1 % normal.length)] = temp;
+        }
         result[index] = normal[normalIndex % normal.length];
         normalIndex += 1;
       }
       if (date === 1 || date === 2) {
+        if (result[index - 1] === holiday[holidayIndex % holiday.length]) {
+          const temp = holiday[holidayIndex % holiday.length];
+          holiday[holidayIndex % holiday.length] = holiday[holidayIndex + (1 % holiday.length)];
+          holiday[holidayIndex + (1 % holiday.length)] = temp;
+        }
         result[index] = holiday[holidayIndex % holiday.length];
         holidayIndex += 1;
       }
