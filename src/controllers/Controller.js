@@ -13,6 +13,7 @@ class Controller {
       const parsedNormalList = await this.parsingNormalList();
       const parsedHolidayList = await this.parsingHolidayList();
       const result = Calendar.matchPeople(calendar.day, parsedNormalList, parsedHolidayList);
+      OutputView.printResult(month, calendar.date, result, calendar.day);
     } catch (error) {
       OutputView.print(error);
     }
