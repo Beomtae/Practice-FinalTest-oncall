@@ -9,7 +9,8 @@ class Controller {
   static async run() {
     try {
       const [month, day] = await this.monthInput();
-      const calendar = new Calendar(month);
+      const calendar = new Calendar(month, day);
+      console.log(calendar.day);
       //   const normalDayWorkingList = await InputView.readNormalDayWorkingList();
       //   const holidayWorkingList = await InputView.readHolidayWorkingList();
     } catch (error) {
