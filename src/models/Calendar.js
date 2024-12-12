@@ -6,9 +6,8 @@ class Calendar {
     this.day = [];
     this.createCalendar(month);
     this.makeHoliday(day);
-    console.log(this.day);
     this.makeSpecialHoliday(month);
-    console.log(this.day);
+    // console.log(this.day);
   }
 
   createCalendar(month) {

@@ -10,9 +10,10 @@ class Controller {
     try {
       const [month, day] = await this.monthInput();
       const calendar = new Calendar(month, day);
-      console.log(calendar.day);
-      //   const normalDayWorkingList = await InputView.readNormalDayWorkingList();
-      //   const holidayWorkingList = await InputView.readHolidayWorkingList();
+      const normalDayWorkingList = await InputView.readNormalDayWorkingList();
+      const parsedNormalList = Parser.parsingNormal(normalDayWorkingList);
+      const holidayWorkingList = await InputView.readHolidayWorkingList();
+      const parsedHolidayList = Parser.parsingHoliday(holidayWorkingList);
     } catch (error) {
       OutputView.print(error);
     }
@@ -33,3 +34,6 @@ class Controller {
 }
 
 export default Controller;
+
+// 준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리
+// 수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니
