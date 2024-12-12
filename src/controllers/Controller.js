@@ -3,12 +3,13 @@ import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
 import Parser from '../utils/Parser.js';
 import ValidateMonth from '../models/validators/ValidateMonth.js';
+import Calendar from '../models/Calendar.js';
 
 class Controller {
   static async run() {
     try {
       const [month, day] = await this.monthInput();
-      console.log(month, day);
+      const calendar = new Calendar(month);
       //   const normalDayWorkingList = await InputView.readNormalDayWorkingList();
       //   const holidayWorkingList = await InputView.readHolidayWorkingList();
     } catch (error) {
