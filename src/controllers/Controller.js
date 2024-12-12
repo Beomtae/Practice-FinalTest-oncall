@@ -10,13 +10,9 @@ class Controller {
     try {
       const [month, day] = await this.monthInput();
       const calendar = new Calendar(month, day);
-      const normalDayWorkingList = await InputView.readNormalDayWorkingList();
-      const parsedNormalList = Parser.parsingNormal(normalDayWorkingList);
-      const holidayWorkingList = await InputView.readHolidayWorkingList();
-      const parsedHolidayList = Parser.parsingHoliday(holidayWorkingList);
+      const parsedNormalList = await this.parsingNormalList();
+      const parsedHolidayList = await this.parsingHolidayList();
       const result = Calendar.matchPeople(calendar.day, parsedNormalList, parsedHolidayList);
-      console.log(result);
-      console.log(calendar.day);
     } catch (error) {
       OutputView.print(error);
     }
@@ -29,6 +25,30 @@ class Controller {
         const [month, day] = Parser.parsingMonthAndDay(monthAndDay);
         ValidateMonth(month);
         return [month, day];
+      } catch (error) {
+        OutputView.print(error);
+      }
+    }
+  }
+
+  static async parsingNormalList() {
+    while (true) {
+      try {
+        const normalDayWorkingList = await InputView.readNormalDayWorkingList();
+        const parsedNormalList = Parser.parsingNormal(normalDayWorkingList);
+        return parsedNormalList;
+      } catch (error) {
+        OutputView.print(error);
+      }
+    }
+  }
+
+  static async parsingHolidayList() {
+    while (true) {
+      try {
+        const holidayWorkingList = await InputView.readHolidayWorkingList();
+        const parsedHolidayList = Parser.parsingHoliday(holidayWorkingList);
+        return parsedHolidayList;
       } catch (error) {
         OutputView.print(error);
       }
